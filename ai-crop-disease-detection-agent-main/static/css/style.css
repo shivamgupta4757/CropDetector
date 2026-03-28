@@ -1,0 +1,1269 @@
+/* =====================================================
+   PREMIUM UI UPGRADE — DELIGHT & DEPTH
+===================================================== */
+
+/* ---------- ROOT ENHANCEMENTS ---------- */
+
+:root {
+  /* Accent colors */
+  --accent: #22c55e;
+  --accent-dark: #16a34a;
+
+  /* Light theme colors */
+  --bg-main: #ffffff;
+  --bg-soft: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+
+  /* Glass / effects */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.45);
+
+  /* Shadows */
+  --soft-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --hard-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- GLOBAL EXPERIENCE ---------- */
+body[data-theme="dark"] {
+  --bg-main: #020617;
+  --bg-soft: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(148, 163, 184, 0.25);
+
+  --soft-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --hard-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(34, 197, 94, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg-main));
+  color: var(--text-main);
+}
+
+/* Calm but responsive motion */
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(.22,1,.36,1),
+    border-color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- SCROLL REVEAL (POLISHED) ---------- */
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  animation: revealUp 0.7s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================
+   CARD SYSTEM — LUXURY FEEL
+===================================================== */
+
+.card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff, #f9fafb);
+  box-shadow: var(--soft-shadow);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Soft light bloom */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(34, 197, 94, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--hard-shadow);
+}
+
+/* =====================================================
+   CARD HEADER — PREMIUM SHIMMER
+===================================================== */
+
+.card-header {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: translateX(-120%);
+}
+
+.card:hover .card-header::after {
+  transform: translateX(120%);
+  transition: transform 0.9s ease;
+}
+
+/* =====================================================
+   GUIDE CARDS — CONFIDENT MOTION
+===================================================== */
+
+.guide-card {
+  position: relative;
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.guide-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 0%;
+  background: linear-gradient(var(--accent), var(--accent-dark));
+  transition: height 0.45s ease;
+}
+
+.guide-card:hover::after {
+  height: 100%;
+}
+
+.guide-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+}
+
+/* Floating icons feel alive */
+.guide-card i {
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+}
+
+.guide-card:hover i {
+  transform: translateY(-6px) scale(1.15) rotate(-4deg);
+}
+
+/* =====================================================
+   NAVIGATION TABS — APP-LIKE
+===================================================== */
+
+.guide-navigation-tabs button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.guide-navigation-tabs button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(34, 197, 94, 0.3),
+    transparent
+  );
+  opacity: 0;
+}
+
+.guide-navigation-tabs button:hover::before {
+  opacity: 1;
+}
+
+.guide-navigation-tabs button.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #ffffff;
+  box-shadow: 0 14px 36px rgba(34, 197, 94, 0.45);
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* =====================================================
+   SECTION HEADINGS — CONFIDENCE LINE
+===================================================== */
+
+.guide-section h4 {
+  position: relative;
+  padding-bottom: 0.6rem;
+}
+
+.guide-section h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent), var(--accent-dark));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.guide-section:hover h4::after {
+  width: 96px;
+}
+
+/* =====================================================
+   STEP / UPLOAD BOX — INTERACTIVE
+===================================================== */
+
+.step-visual {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #f0fdf4,
+      #f0fdf4 12px,
+      #ecfdf5 12px,
+      #ecfdf5 24px
+    );
+  position: relative;
+  border: 2px dashed #bbf7d0;
+}
+
+.step-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(34, 197, 94, 0.35),
+    transparent 65%
+  );
+  opacity: 0;
+}
+
+.step-visual:hover::after {
+  opacity: 1;
+}
+
+.step-visual:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* =====================================================
+   PREVENTION GRID — CONFIDENT HOVER
+===================================================== */
+
+.prevention-item {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  position: relative;
+}
+
+.prevention-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.18),
+    transparent
+  );
+  opacity: 0;
+}
+
+.prevention-item:hover::before {
+  opacity: 1;
+}
+
+.prevention-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-10px) scale(1.06);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.18);
+}
+
+/* =====================================================
+   FAQ / TROUBLESHOOT — SUBTLE CONFIDENCE
+===================================================== */
+
+.faq-item,
+.troubleshoot-item {
+  padding: 0.8rem;
+  border-radius: 0.9rem;
+  position: relative;
+}
+
+.faq-item::before,
+.troubleshoot-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 197, 94, 0.18),
+    transparent
+  );
+  opacity: 0;
+}
+
+.faq-item:hover::before,
+.troubleshoot-item:hover::before {
+  opacity: 1;
+}
+
+.faq-item:hover,
+.troubleshoot-item:hover {
+  transform: translateX(8px);
+  background-color: #f0fdf4;
+}
+
+/* =====================================================
+   MOBILE — SAFE & CLEAN
+===================================================== */
+
+@media (max-width: 768px) {
+  .guide-navigation-tabs {
+    gap: 0.5rem;
+  }
+
+  .guide-navigation-tabs button {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+  }
+
+  .card:hover,
+  .guide-card:hover,
+  .prevention-item:hover {
+    transform: none;
+  }
+}
+/* =====================================================
+   ✨ CINEMATIC MOTION ENGINE
+===================================================== */
+
+:root {
+  --accent-2: #4ade80;
+  --glow: rgba(34, 197, 94, 0.45);
+}
+
+/* -----------------------------------------------------
+   BACKGROUND: Living Gradient (Subtle Motion)
+----------------------------------------------------- */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,197,94,0.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(74,222,128,0.12), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(22,163,74,0.12), transparent 50%);
+  z-index: -1;
+  animation: bgFloat 18s ease-in-out infinite alternate;
+}
+
+@keyframes bgFloat {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-60px) scale(1.04); }
+}
+
+/* =====================================================
+   🪄 CARDS — 3D DEPTH & LIGHT FOLLOW
+===================================================== */
+
+.card {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform:
+    translateY(-10px)
+    rotateX(4deg)
+    rotateY(-4deg)
+    scale(1.03);
+}
+
+/* Light sweep */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.35),
+    transparent 70%
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+}
+
+.card:hover::after {
+  opacity: 1;
+  transform: translateX(120%);
+  transition: transform 1s ease;
+}
+
+/* =====================================================
+   🌟 GUIDE CARDS — FLOATING PRESENCE
+===================================================== */
+
+.guide-card {
+  animation: floatIdle 6s ease-in-out infinite;
+}
+
+.guide-card:hover {
+  animation-play-state: paused;
+}
+
+@keyframes floatIdle {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Icon pulse on hover */
+.guide-card i {
+  animation: iconBreathe 3s infinite ease-in-out;
+}
+
+@keyframes iconBreathe {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.guide-card:hover i {
+  animation: iconPop 0.5s ease forwards;
+}
+
+@keyframes iconPop {
+  0% { transform: scale(1); }
+  60% { transform: scale(1.3) rotate(-6deg); }
+  100% { transform: scale(1.15) rotate(-3deg); }
+}
+
+/* =====================================================
+   🚀 NAV TABS — MAGNETIC INTERACTION
+===================================================== */
+
+.guide-navigation-tabs button {
+  cursor: pointer;
+}
+
+.guide-navigation-tabs button:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.guide-navigation-tabs button:active {
+  transform: scale(0.96);
+}
+
+/* Active pulse */
+.guide-navigation-tabs button.active {
+  animation: activePulse 1.8s infinite ease-in-out;
+}
+
+@keyframes activePulse {
+  0%,100% {
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(34,197,94,0);
+  }
+}
+
+/* =====================================================
+   ✨ HEADINGS — SCAN LINE EFFECT
+===================================================== */
+
+.guide-section h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0;
+}
+
+.guide-section:hover h4::before {
+  opacity: 1;
+  animation: scanLine 1s ease;
+}
+
+@keyframes scanLine {
+  from { transform: translateX(-40%); }
+  to { transform: translateX(40%); }
+}
+
+/* =====================================================
+   📦 STEP / UPLOAD — CALL TO ACTION ENERGY
+===================================================== */
+
+.step-visual {
+  animation: subtlePulse 4s infinite ease-in-out;
+}
+
+@keyframes subtlePulse {
+  0%,100% { box-shadow: 0 0 0 rgba(34,197,94,0); }
+  50% { box-shadow: 0 0 40px rgba(34,197,94,0.35); }
+}
+
+.step-visual:hover {
+  animation: none;
+}
+
+/* =====================================================
+   🛡️ PREVENTION CARDS — CONFIDENCE LIFT
+===================================================== */
+
+.prevention-item {
+  animation: riseIn 0.8s ease both;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================
+   ❓ FAQ — INTENTIONAL MOTION
+===================================================== */
+
+.faq-item:hover,
+.troubleshoot-item:hover {
+  animation: faqNudge 0.4s ease forwards;
+}
+
+@keyframes faqNudge {
+  0% { transform: translateX(0); }
+  60% { transform: translateX(10px); }
+  100% { transform: translateX(8px); }
+}
+
+/* =====================================================
+   💫 MICRO INTERACTIONS
+===================================================== */
+
+button,
+a {
+  position: relative;
+}
+
+button::after,
+a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 var(--glow);
+  opacity: 0;
+}
+
+button:hover::after,
+a:hover::after {
+  opacity: 1;
+  animation: clickGlow 0.6s ease;
+}
+
+@keyframes clickGlow {
+  from { box-shadow: 0 0 0 0 var(--glow); }
+  to { box-shadow: 0 0 20px 12px rgba(34,197,94,0); }
+}
+
+/* =====================================================
+   📱 MOBILE — PERFORMANCE SAFE
+===================================================== */
+
+@media (max-width: 768px) {
+  body::before {
+    animation: none;
+  }
+
+  .card:hover,
+  .guide-card:hover {
+    transform: none;
+  }
+}
+
+/* Animation for the new loader-ring class */
+.loader-ring {
+  border-top-color: var(--accent) !important;
+  border-left-color: var(--accent) !important;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================
+   🧾 AI REPORT — CLEAN, READABLE, HIGHLIGHTED
+===================================================== */
+
+.report-content {
+  color: #0f172a;
+  line-height: 1.75;
+}
+
+.report-content h1,
+.report-content h2,
+.report-content h3 {
+  color: #064e3b;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.report-content h1 { font-size: 1.5rem; margin: 0.25rem 0 0.75rem; }
+.report-content h2 { font-size: 1.25rem; margin: 0.25rem 0 0.75rem; }
+.report-content h3 { font-size: 1.1rem; margin: 0.25rem 0 0.5rem; }
+
+.report-content p { margin: 0.5rem 0; }
+
+.report-content ul,
+.report-content ol {
+  margin: 0.6rem 0 0.6rem 1.15rem;
+  padding: 0;
+}
+
+.report-content li { margin: 0.35rem 0; }
+
+.report-content strong {
+  color: #0b3b2c;
+  background: rgba(34, 197, 94, 0.14);
+  padding: 0.08rem 0.25rem;
+  border-radius: 0.35rem;
+}
+
+.report-section {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 5px solid rgba(34, 197, 94, 0.9);
+  border-radius: 0.9rem;
+  padding: 1rem 1.1rem;
+  margin: 0.9rem 0;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+}
+
+.report-section--intro {
+  border-left-color: rgba(59, 130, 246, 0.9);
+}
+
+.report-keypoint {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px dashed rgba(34, 197, 94, 0.35);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.65rem;
+}
+
+.report-content a {
+  color: #166534;
+  text-decoration: underline;
+}
+
+.report-content blockquote {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid rgba(34, 197, 94, 0.8);
+  background: rgba(34, 197, 94, 0.08);
+  border-radius: 0.75rem;
+}
+
+/* ===== Prediction Result Card Upgrade ===== */
+
+.result-card {
+  padding: 25px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid rgba(52,211,153,0.18);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.75);
+}
+
+
+.result-image {
+  max-height: 220px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.disease-name {
+  font-size: 26px;
+  font-weight: bold;
+  color: #e63946;
+  margin: 10px 0;
+}
+
+.confidence-section {
+  margin-top: 15px;
+}
+
+.progress-bar {
+  background-color: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 22px;
+}
+
+.progress {
+  background-color: #2a9d8f;
+  height: 100%;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  line-height: 22px;
+  transition: width 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 600px) {
+  .result-card {
+    padding: 15px;
+  }
+
+  .disease-name {
+    font-size: 20px;
+  }
+}
+/* ================================
+   Footer Styles (Issue #86)
+================================ */
+
+.custom-footer {
+  background-color: #166534; /* green-700 */
+  color: #ecfdf5;
+  padding: 50px 20px 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #d1fae5;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #bbf7d0;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e5fef0;
+}
+
+.footer-text.small {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+.footer-links a {
+  color: #ecfdf5;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: #bbf7d0;
+}
+
+.footer-email a {
+  color: #bbf7d0;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-email a:hover {
+  text-decoration: underline;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-social a {
+  color: #ecfdf5;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: #86efac;
+  transform: scale(1.15);
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #d1fae5;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 15px;
+}
+
+/* ===============================
+   Legal Pages Styling Enhancements
+   =============================== */
+
+.legal-page-wrapper {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.legal-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.legal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+.legal-card h1 {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.legal-card h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #16a34a, #22c55e);
+  border-radius: 2px;
+}
+
+.legal-card h2 {
+  margin-top: 28px;
+  padding-left: 12px;
+  border-left: 4px solid #22c55e;
+}
+
+.legal-card p {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.legal-highlight {
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  color: #065f46;
+  font-size: 0.9rem;
+}
+
+/* Fade animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   DARK THEME (PREMIUM)
+   ========================= */
+/* ===== GLOBAL DARK BACKGROUND ===== */
+[data-theme="dark"] {
+  background:
+    radial-gradient(circle at top, rgba(34,197,94,0.18), transparent 45%),
+    linear-gradient(180deg, #020617 0%, #04130e 55%, #020617 100%);
+  color: #e6fff3;
+}
+
+/* Navbar */
+[data-theme="dark"] nav {
+  background: linear-gradient(to right, #064e3b, #022c22, #064e3b);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Nav links */
+[data-theme="dark"] .nav-link {
+  color: #d1fae5;
+}
+[data-theme="dark"] .nav-link:hover {
+  color: #34d399;
+}
+
+/* Cards / containers */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-gray-50 {
+  background-color: #0f2a21 !important;
+  color: #e5f5ee;
+  border-color: #134e4a;
+}
+
+/* Headings */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #a7f3d0;
+}
+
+/* Text */
+[data-theme="dark"] p,
+[data-theme="dark"] label {
+  color: #d1fae5;
+}
+
+/* Inputs & selects */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: #062e24;
+  color: #e5f5ee;
+  border: 1px solid #134e4a;
+}
+
+/* Emergency button (premium contrast) */
+[data-theme="dark"] #emergencyBtn,
+[data-theme="dark"] #emergencyBtnMobile {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  box-shadow: 0 0 15px rgba(220,38,38,0.6);
+}
+
+/* Analyze / Primary buttons */
+[data-theme="dark"] button {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #022c22;
+  font-weight: 600;
+  box-shadow:
+    0 12px 30px rgba(34,197,94,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+[data-theme="dark"] button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(34,197,94,0.65);
+}
+
+/* Main glass container */
+[data-theme="dark"] .backdrop-blur-md {
+  background: rgba(6, 24, 19, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* Hero heading */
+[data-theme="dark"] h2 span,
+[data-theme="dark"] h2 {
+  color: #bbf7d0 !important;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
+}
+/* Paragraph & helper text */
+[data-theme="dark"] p {
+  color: #d1fae5;
+}
+
+[data-theme="dark"] .italic {
+  color: #9fe7c7;
+}
+/* Upload / Drop Area — Dark */
+[data-theme="dark"] #drop-area {
+  background: rgba(6, 24, 19, 0.85);
+  border: 2px dashed rgba(52, 211, 153, 0.35);
+  color: #d1fae5;
+}
+
+[data-theme="dark"] #drop-area:hover {
+  background: rgba(10, 45, 34, 0.95);
+  border-color: #34d399;
+}
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-gray-700 {
+  color: #d1fae5 !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+  color: #9fe7c7 !important;
+}
+/* Welcome Banner — Dark Mode Contrast Fix */
+[data-theme="dark"] .bg-green-100 {
+  background: rgba(16, 185, 129, 0.18) !important;
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+/* Welcome Heading Text */
+[data-theme="dark"] h2,
+[data-theme="dark"] h2 span {
+  color: #ecfdf5 !important;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(52, 211, 153, 0.35);
+}
+/* =========================
+   HERO CENTER CARD — DARK GLASS FIX
+   ========================= */
+[data-theme="dark"] .backdrop-blur-md {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 30, 24, 0.85),
+    rgba(4, 18, 14, 0.92)
+  ) !important;
+
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+/* =========================
+   HERO TITLE VISIBILITY FIX
+   ========================= */
+[data-theme="dark"] h2 {
+  color: #eafff4 !important;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(52, 211, 153, 0.35);
+}
+
+[data-theme="dark"] h2 span {
+  color: #bbf7d0 !important;
+  text-shadow:
+    0 0 20px rgba(52, 211, 153, 0.55);
+}
+/* =========================
+   NAVBAR = FOOTER (DARK MODE)
+   ========================= */
+[data-theme="dark"] nav,
+[data-theme="dark"] .custom-footer {
+  background: linear-gradient(
+    to right,
+    #064e3b,
+    #022c22,
+    #064e3b
+  ) !important;
+}
+
+/* Footer border polish */
+[data-theme="dark"] .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+/* =========================
+   DARK MODE — TEXT VISIBILITY FIX (GLOBAL)
+   ========================= */
+
+/* Force readable base text everywhere */
+[data-theme="dark"] {
+  color: #e5f5ee;
+}
+
+/* Paragraphs, spans, list items */
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] small,
+[data-theme="dark"] strong {
+  color: #d1fae5 !important;
+}
+
+/* Headings inside content cards */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5 {
+  color: #ecfdf5 !important;
+}
+
+/* Report / AI output text */
+[data-theme="dark"] .report-content {
+  color: #d1fae5 !important;
+}
+
+[data-theme="dark"] .report-content h1,
+[data-theme="dark"] .report-content h2,
+[data-theme="dark"] .report-content h3 {
+  color: #bbf7d0 !important;
+}
+
+/* Disease name (prediction result) */
+[data-theme="dark"] .disease-name {
+  color: #fca5a5 !important; /* soft readable red */
+}
+
+/* Progress text inside bars */
+[data-theme="dark"] .progress {
+  color: #022c22 !important;
+  font-weight: 600;
+}
+
+/* Muted helper text */
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-muted {
+  color: #9fe7c7 !important;
+}
+
+/* =====================================================
+   ✅ Scroll to Top Button (Issue #119)*/
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  display: none;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-top-btn.show {
+  display: block;
+}
+
+/* ================================
+   Flip Card Effect for Sample Images
+================================ */
+
+.sample-image-card {
+  perspective: 1000px;
+  position: relative;
+}
+
+.sample-image-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.sample-image-card:hover .sample-image-card-inner {
+  transform: rotateY(180deg);
+}
+
+.sample-image-card-front,
+.sample-image-card-back {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.sample-image-card-back {
+  position: absolute;
+  inset: 0;
+  background: #166534;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.sample-image-card-back h4 {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sample-image-card-back p {
+  font-size: 11px;
+  margin-top: 4px;
+}
